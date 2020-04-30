@@ -6,8 +6,10 @@ import com.example.telstrademo.data.repository.MainRepository
 import com.example.telstrademo.utility.Resource
 import kotlinx.coroutines.Dispatchers
 
-class MainViewModel (private val mainRepository: MainRepository) : ViewModel() {
 
+class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
+
+    /* The result of the function will be emitted as Live Data, which can be observed in the view*/
     fun getFactDetails() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {

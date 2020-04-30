@@ -3,6 +3,7 @@ package com.example.telstrademo.data.api
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/* create retrofit object by using Retrofit.Builder() and configured BASE_URL */
 object RetrofitBuilder {
 
     private const val BASE_URL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/"

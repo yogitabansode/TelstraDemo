@@ -31,6 +31,7 @@ class FactListActivity : AppCompatActivity() {
         setupObservers()
     }
 
+    /* Initialise viewModel object */
     private fun setupViewModel() {
         viewModel = ViewModelProviders.of(
             this,
@@ -75,6 +76,7 @@ class FactListActivity : AppCompatActivity() {
             }
         })
     }
+
     private fun retrieveList(users: List<Rows>) {
         adapter.apply {
             addUsers(users)

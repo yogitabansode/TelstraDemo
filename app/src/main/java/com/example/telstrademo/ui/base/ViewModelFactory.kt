@@ -6,7 +6,8 @@ import com.example.telstrademo.data.api.ApiHelper
 import com.example.telstrademo.data.repository.MainRepository
 import com.example.telstrademo.ui.main.viewmodel.MainViewModel
 
-class ViewModelFactory (private val apiHelper: ApiHelper) : ViewModelProvider.Factory {
+/*This code is used to pass value to view model like we pass repository object*/
+class ViewModelFactory(private val apiHelper: ApiHelper) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
