@@ -77,11 +77,10 @@ class FactListActivity : AppCompatActivity() {
                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     }
                     ResponseStatus.LOADING -> {
-                        if(swipeToRefreshContainer.isRefreshing == false) {
+                        if (!swipeToRefreshContainer.isRefreshing) {
                             progressBar.visibility = View.VISIBLE
                             recyclerView.visibility = View.GONE
-                        }
-                        else{
+                        } else {
                             recyclerView.visibility = View.VISIBLE
                             progressBar.visibility = View.GONE
                         }
@@ -97,7 +96,7 @@ class FactListActivity : AppCompatActivity() {
      */
     private fun retrieveList(factList: List<Rows>) {
         adapter.apply {
-            updateListData( factList)
+            updateListData(factList)
             notifyDataSetChanged()
         }
     }

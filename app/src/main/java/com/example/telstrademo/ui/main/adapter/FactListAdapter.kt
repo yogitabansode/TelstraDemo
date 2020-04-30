@@ -11,7 +11,7 @@ import com.example.telstrademo.data.model.Rows
 import kotlinx.android.synthetic.main.item_layout.view.*
 
 /*This class is used to set date received from api to the recyclerview */
-class FactListAdapter(private val factsList: ArrayList<Rows?>) :
+class FactListAdapter(private val factsList: ArrayList<Rows>) :
     RecyclerView.Adapter<FactListAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -19,19 +19,15 @@ class FactListAdapter(private val factsList: ArrayList<Rows?>) :
         /*Attaching data on each row of holder*/
         fun bind(factDetail: Rows) {
             itemView.apply {
-
                 textViewTitle?.text = factDetail.title
                 textViewDescription?.text = factDetail.description
                 //Glide used to download image and set to imageview
-                    Glide.with(imageViewListIcon.context)
-                        .applyDefaultRequestOptions(object : RequestOptions() {}
-                            .error(R.drawable.no_image_available))
-                        .load(factDetail.imageHref)
-                        .into(imageViewListIcon)
-
+                Glide.with(imageViewListIcon.context)
+                    .applyDefaultRequestOptions(object : RequestOptions() {}
+                        .error(R.drawable.no_image_available))
+                    .load(factDetail.imageHref)
+                    .into(imageViewListIcon)
             }
-
-
         }
     }
 
@@ -48,7 +44,7 @@ class FactListAdapter(private val factsList: ArrayList<Rows?>) :
     override fun getItemCount(): Int = factsList.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        factsList[position]?.let { holder.bind(it) }
+        holder.bind(factsList[position])
     }
 
     /** function used to refresh data of recyclerview
