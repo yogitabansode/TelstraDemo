@@ -29,6 +29,11 @@ class FactListActivity : AppCompatActivity() {
         setupViewModel()
         setupUI()
         setupObservers()
+        /*Pull to refresh event */
+        swipeToRefreshContainer.setOnRefreshListener {
+            setupObservers()
+        }
+
     }
 
     /* Initialise viewModel object */
@@ -39,6 +44,7 @@ class FactListActivity : AppCompatActivity() {
         ).get(MainViewModel::class.java)
     }
 
+    /* Initialise UI component  */
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = FactListAdapter(arrayListOf())
@@ -51,11 +57,13 @@ class FactListActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
     }
 
+    /* Observes tha data from the viewmodel and initiate flow according to response status  */
     private fun setupObservers() {
         viewModel.getFactDetails().observe(this, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     ResponseStatus.SUCCESS -> {
+                        swipeToRefreshContainer.isRefreshing = false
                         recyclerView.visibility = View.VISIBLE
                         progressBar.visibility = View.GONE
                         resource.data?.let { mainResponse ->
@@ -69,17 +77,27 @@ class FactListActivity : AppCompatActivity() {
                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     }
                     ResponseStatus.LOADING -> {
-                        progressBar.visibility = View.VISIBLE
-                        recyclerView.visibility = View.GONE
+                        if(swipeToRefreshContainer.isRefreshing == false) {
+                            progressBar.visibility = View.VISIBLE
+                            recyclerView.visibility = View.GONE
+                        }
+                        else{
+                            recyclerView.visibility = View.VISIBLE
+                            progressBar.visibility = View.GONE
+                        }
                     }
+
                 }
             }
         })
     }
 
-    private fun retrieveList(users: List<Rows>) {
+    /** function used to refresh data of recyclerview
+     * @param factList list items to be added
+     */
+    private fun retrieveList(factList: List<Rows>) {
         adapter.apply {
-            addUsers(users)
+            updateListData( factList)
             notifyDataSetChanged()
         }
     }
