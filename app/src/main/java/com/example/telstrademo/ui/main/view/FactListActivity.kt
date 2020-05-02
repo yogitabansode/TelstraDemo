@@ -59,7 +59,7 @@ class FactListActivity : AppCompatActivity() {
 
     /* Observes tha data from the viewmodel and initiate flow according to response status  */
     private fun setupObservers() {
-        viewModel.getFactDetails().observe(this, Observer {
+        viewModel.factsData.observe(this, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     ResponseStatus.SUCCESS -> {

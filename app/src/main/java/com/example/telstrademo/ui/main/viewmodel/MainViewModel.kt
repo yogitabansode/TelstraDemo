@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
     /* The result of the function will be emitted as Live Data, which can be observed in the view*/
-    fun getFactDetails() = liveData(Dispatchers.IO) {
+    var factsData = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
             emit(Resource.success(data = getFilteredList(mainRepository.getFactDetails())))
