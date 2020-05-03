@@ -8,7 +8,7 @@ object RetrofitBuilder {
 
     private const val BASE_URL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/"
 
-        private fun getRetrofit(): Retrofit {
+    private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

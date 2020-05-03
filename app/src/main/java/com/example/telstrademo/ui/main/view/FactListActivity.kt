@@ -11,16 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.telstrademo.R
 import com.example.telstrademo.data.api.ApiHelper
 import com.example.telstrademo.data.api.RetrofitBuilder
-import com.example.telstrademo.data.model.Rows
+import com.example.telstrademo.data.model.FactDetailList
 import com.example.telstrademo.ui.base.ViewModelFactory
 import com.example.telstrademo.ui.main.adapter.FactListAdapter
-import com.example.telstrademo.ui.main.viewmodel.MainViewModel
+import com.example.telstrademo.ui.main.viewmodel.FactDetailViewModel
 import com.example.telstrademo.utility.ResponseStatus
 import kotlinx.android.synthetic.main.activity_main.*
 
 class FactListActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: FactDetailViewModel
     private lateinit var adapter: FactListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class FactListActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(
             this,
             ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(MainViewModel::class.java)
+        ).get(FactDetailViewModel::class.java)
     }
 
     /* Initialise UI component  */
@@ -94,7 +94,7 @@ class FactListActivity : AppCompatActivity() {
     /** function used to refresh data of recyclerview
      * @param factList list items to be added
      */
-    private fun retrieveList(factList: List<Rows>) {
+    private fun retrieveList(factList: List<FactDetailList>) {
         adapter.apply {
             updateListData(factList)
             notifyDataSetChanged()

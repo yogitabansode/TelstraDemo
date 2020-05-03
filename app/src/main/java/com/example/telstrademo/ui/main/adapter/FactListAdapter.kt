@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.telstrademo.R
-import com.example.telstrademo.data.model.Rows
+import com.example.telstrademo.data.model.FactDetailList
 import kotlinx.android.synthetic.main.item_layout.view.*
 
-/*This class is used to set date received from api to the recyclerview */
-class FactListAdapter(private val factsList: ArrayList<Rows>) :
+/*This class is used to set data received from api to the recyclerview */
+class FactListAdapter(private val factsList: ArrayList<FactDetailList>) :
     RecyclerView.Adapter<FactListAdapter.DataViewHolder>() {
 
-    class DataViewHolder(itemView: View,context: Context) : RecyclerView.ViewHolder(itemView) {
+    class DataViewHolder(itemView: View, context: Context) : RecyclerView.ViewHolder(itemView) {
 
         /*Attaching data on each row of holder*/
-        fun bind(factDetail: Rows) {
+        fun bind(factDetail: FactDetailList) {
             itemView.apply {
                 factDetail.title?.let {
                     textViewTitle?.text = it
@@ -26,7 +26,9 @@ class FactListAdapter(private val factsList: ArrayList<Rows>) :
 
                 factDetail.description?.let {
                     textViewDescription?.text = it
-                } ?: run { textViewDescription?.text = context.getString(R.string.desc_not_available) }
+                } ?: run {
+                    textViewDescription?.text = context.getString(R.string.desc_not_available)
+                }
 
                 //Glide used to download image and set to imageview
                 Glide.with(imageViewListIcon.context)
@@ -45,7 +47,7 @@ class FactListAdapter(private val factsList: ArrayList<Rows>) :
                 R.layout.item_layout,
                 parent,
                 false
-            ),parent.context
+            ), parent.context
         )
     }
 
@@ -59,7 +61,7 @@ class FactListAdapter(private val factsList: ArrayList<Rows>) :
      * @param factList list items to be added
      */
 
-    fun updateListData(factList: List<Rows>) {
+    fun updateListData(factList: List<FactDetailList>) {
         this.factsList.apply {
             clear()
             addAll(factList)

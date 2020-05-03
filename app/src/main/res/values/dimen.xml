@@ -9,11 +9,9 @@
     <dimen name="margin_extra_wide">28dp</dimen>
     <dimen name="icon_height">110dp</dimen>
     <dimen name="icon_width">130dp</dimen>
-    <dimen name="arrow_height">20dp</dimen>
-    <dimen name="arrow_width">20dp</dimen>
     <dimen name="padding_10">10dp</dimen>
     <dimen name="margin_16">16dp</dimen>
-
+    <dimen name="margin_small">12dp</dimen>
 
 
 </resources>
