@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class FactDetailResponse(
 
     @SerializedName("title") val title: String? = null,
-    @SerializedName("rows") val rows: ArrayList<FactDetailList>
+    @SerializedName("rows") val factDetailListItem: ArrayList<FactDetailItem>
 )

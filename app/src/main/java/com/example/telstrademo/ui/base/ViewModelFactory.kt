@@ -7,11 +7,13 @@ import com.example.telstrademo.data.repository.FactDetailRepository
 import com.example.telstrademo.ui.main.viewmodel.FactDetailViewModel
 
 /*This code is used to pass value to view model like we pass repository object*/
-class ViewModelFactory(private val apiHelper: ApiHelper) : ViewModelProvider.Factory {
+class ViewModelFactory(private val apiHelper: ApiHelper?) : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel?> create(modelClass: Class<T?>): T {
         if (modelClass.isAssignableFrom(FactDetailViewModel::class.java)) {
-            return FactDetailViewModel(FactDetailRepository(apiHelper)) as T
+            apiHelper?.let{
+                return FactDetailViewModel(FactDetailRepository(it)) as T
+            }
         }
         throw IllegalArgumentException("Unknown class name")
     }

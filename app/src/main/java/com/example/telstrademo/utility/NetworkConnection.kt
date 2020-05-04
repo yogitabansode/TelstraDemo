@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.telstrademo.application.ApplicationContext.Companion.context
+import com.example.telstrademo.application.FactDetailApplicationContext.Companion.context
 
 /**
  * This class for internet connection

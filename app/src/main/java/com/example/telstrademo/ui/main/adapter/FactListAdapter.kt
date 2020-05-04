@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.telstrademo.R
-import com.example.telstrademo.data.model.FactDetailList
+import com.example.telstrademo.data.model.FactDetailItem
 import kotlinx.android.synthetic.main.item_layout.view.*
 
 /*This class is used to set data received from api to the recyclerview */
-class FactListAdapter(private val factsList: ArrayList<FactDetailList>) :
+class FactListAdapter(private val factsItem: ArrayList<FactDetailItem>) :
     RecyclerView.Adapter<FactListAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View, context: Context) : RecyclerView.ViewHolder(itemView) {
 
         /*Attaching data on each row of holder*/
-        fun bind(factDetail: FactDetailList) {
+        fun bind(factDetail: FactDetailItem) {
             itemView.apply {
                 factDetail.title?.let {
                     textViewTitle?.text = it
@@ -51,20 +51,20 @@ class FactListAdapter(private val factsList: ArrayList<FactDetailList>) :
         )
     }
 
-    override fun getItemCount(): Int = factsList.size
+    override fun getItemCount(): Int = factsItem.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.bind(factsList[position])
+        holder.bind(factsItem[position])
     }
 
     /** function used to refresh data of recyclerview
-     * @param factList list items to be added
+     * @param factItem list items to be added
      */
 
-    fun updateListData(factList: List<FactDetailList>) {
-        this.factsList.apply {
+    fun updateListData(factItem: List<FactDetailItem>) {
+        this.factsItem.apply {
             clear()
-            addAll(factList)
+            addAll(factItem)
         }
 
     }

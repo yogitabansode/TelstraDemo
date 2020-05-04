@@ -6,12 +6,11 @@ import android.content.Context
 /**
  * This class for creating creating application context
  */
-class ApplicationContext : Application() {
+class FactDetailApplicationContext : Application() {
 
     companion object {
         lateinit var context: Context
     }
-
     /**
      * This method is used to initialize the context
      */
@@ -19,6 +18,4 @@ class ApplicationContext : Application() {
         super.onCreate()
         context = this
     }
-
-
 }

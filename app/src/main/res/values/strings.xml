@@ -2,5 +2,5 @@
     <string name="app_name">TelstraDemo</string>
     <string name="title_not_available">Title not available</string>
     <string name="desc_not_available">Description not available</string>
-
+    <string name="no_network_available">No internet connectivity available.Please try after sometime</string>
 </resources>
